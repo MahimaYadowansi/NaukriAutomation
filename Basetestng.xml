@@ -12,5 +12,11 @@
             <class name="testCases.JobSearchTest"/>
         </classes>
     </test>
+    
+     <test name="Job Apply Test">
+        <classes>
+            <class name="testCases.JobApplyTest"/>
+        </classes>
+    </test>
 </suite> <!--
 Suite -->
