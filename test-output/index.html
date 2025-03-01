@@ -55,7 +55,7 @@
                 </li>
                 <li>
                   <a href="#" panel-name="testlist-Suite" class="navigator-link ">
-                    <span class="test-stats">3 tests</span>
+                    <span class="test-stats">4 tests</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods,   3 passed</span>
+                    <span class="method-stats">4 methods,   4 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -109,6 +109,11 @@
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Suite" title="testCases.JobSearchTest" class="method navigator-link" hash-for-method="testJobSearch">testJobSearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="testCases.ProfileTest" class="method navigator-link" hash-for-method="testNaukriNavigation">testNaukriNavigation</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -173,6 +178,21 @@
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-Suite-class-passed -->
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">testCases.ProfileTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testNaukriNavigation">
+                  </a> <!-- testNaukriNavigation -->
+                  <span class="method-name">testNaukriNavigation</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-passed -->
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -198,6 +218,11 @@
       &lt;class name=&quot;testCases.JobApplyTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Job Apply Test --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Profile Elements navigation Test&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;testCases.ProfileTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Profile Elements navigation Test --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -216,6 +241,9 @@
               </li>
               <li>
                 <span class="test-name">Job Apply Test (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">Profile Elements navigation Test (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -241,19 +269,23 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(4);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testJobApply')
 data.setCell(0, 2, 'testCases.JobApplyTest')
-data.setCell(0, 3, 41837);
+data.setCell(0, 3, 35410);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testJobSearch')
-data.setCell(1, 2, 'testCases.JobSearchTest')
-data.setCell(1, 3, 13044);
+data.setCell(1, 1, 'testNaukriNavigation')
+data.setCell(1, 2, 'testCases.ProfileTest')
+data.setCell(1, 3, 23414);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'testvalidLogin')
-data.setCell(2, 2, 'testCases.LoginTest')
-data.setCell(2, 3, 6722);
+data.setCell(2, 1, 'testJobSearch')
+data.setCell(2, 2, 'testCases.JobSearchTest')
+data.setCell(2, 3, 13417);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testvalidLogin')
+data.setCell(3, 2, 'testCases.LoginTest')
+data.setCell(3, 3, 6762);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
@@ -291,41 +323,56 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">testvalidLogin</span>
-                <span class="method-start">8035 ms</span>
+                <span class="method-start">10139 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">14785 ms</span>
+                <span class="method-start">16951 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">testCases.JobSearchTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
-                <span class="method-start">15394 ms</span>
+                <span class="method-start">17751 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">testJobSearch</span>
-                <span class="method-start">22320 ms</span>
+                <span class="method-start">25519 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">35365 ms</span>
+                <span class="method-start">39066 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">testCases.JobApplyTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
-                <span class="method-start">35856 ms</span>
+                <span class="method-start">40035 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">testJobApply</span>
-                <span class="method-start">44608 ms</span>
+                <span class="method-start">49136 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">86447 ms</span>
+                <span class="method-start">84546 ms</span>
+              </div> <!-- configuration-test after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">testCases.ProfileTest</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">setup</span>
+                <span class="method-start">85290 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <span class="method-name">testNaukriNavigation</span>
+                <span class="method-start">92868 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">116282 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

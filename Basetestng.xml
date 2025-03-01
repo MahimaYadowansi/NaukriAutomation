@@ -18,5 +18,11 @@
             <class name="testCases.JobApplyTest"/>
         </classes>
     </test>
+    
+    <test name="Profile Elements navigation Test">
+        <classes>
+            <class name="testCases.ProfileTest"/>
+        </classes>
+    </test>
 </suite> <!--
 Suite -->
