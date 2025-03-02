@@ -24,5 +24,16 @@
             <class name="testCases.ProfileTest"/>
         </classes>
     </test>
+    <test name="Update Resume Test">
+        <classes>
+            <class name="testCases.ResumeUploadTest"/>
+        </classes>
+    </test>
+    
+     <test name="LogOut Test">
+        <classes>
+            <class name="testCases.LogOutTest"/>
+        </classes>
+    </test>
 </suite> <!--
 Suite -->
