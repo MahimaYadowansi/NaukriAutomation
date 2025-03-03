@@ -30,9 +30,13 @@
         </classes>
     </test>
     
-     <test name="LogOut Test">
+    <test name="LogOut Test">
         <classes>
-            <class name="testCases.LogOutTest"/>
+            <class name="testCases.LogOutTest">
+                <methods>
+                    <include name="logoutLOGINtest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite> <!--

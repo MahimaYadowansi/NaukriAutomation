@@ -109,6 +109,7 @@ public class JobApplyPage extends BasePage {
 	                    } catch (TimeoutException e3) {
 	                    	// Instead of failing the test, log a message and return
 	                        System.out.println("No application button found on the job page. Please apply manually.");
+	                        driver.switchTo().window(parentWindow);
 	                        return "Manual application required"; // Return a message instead of failing
 	                    }
 	                }
@@ -130,14 +131,22 @@ public class JobApplyPage extends BasePage {
 
 				if (!successMessageText.isEmpty()) {
 					System.out.println(" Success: " + successMessageText);
+					
+					 // Close the new tab and switch back to parent window
+	                driver.close();
+	                driver.switchTo().window(parentWindow);
+
 					return successMessageText; // Return the success message if found
 				} else {
 					System.out.println(" Job application failed - success message not found.");
+					driver.close();  // Close the new tab
+	                driver.switchTo().window(parentWindow); 
 					throw new AssertionError("Job application failed: Success message not found.");
 				}
 			}
 		}
-		throw new AssertionError("No new job application window found."); // Fail if no job window opens
+		driver.switchTo().window(parentWindow);  // Ensure switching back if no new window is found
+	    throw new AssertionError("No new job application window found.");
 	}
 
 	// Method to capture the success message

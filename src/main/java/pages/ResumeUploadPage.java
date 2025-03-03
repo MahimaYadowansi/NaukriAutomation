@@ -29,129 +29,119 @@ public class ResumeUploadPage extends BasePage{
 	private WebElement updateResumeInput;
 	
 	
-	
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	 @FindBy(xpath = "//span[@id='attachCVMsgBox']")
+	    private WebElement successMessage;
+	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-    public void updateNaukriResume() throws InterruptedException {
-try{
-           // Wait for and click 'View Profile' button
-	        wait.until(ExpectedConditions.elementToBeClickable(viewprofileBtn));
-	       clickElement(viewprofileBtn);
-	       System.out.println("Clicked on  View profile button");
-	       
-	       
-	       // Wait for resume upload input field
-	       Thread.sleep(2000);
-	       WebElement updateResumeBtn = wait.until(ExpectedConditions.visibilityOf(updateResumeInput));
-	       
-	    
+		public void updateNaukriResume() throws InterruptedException {
+	        try {
+	            // Wait for and click 'View Profile' button
+	            wait.until(ExpectedConditions.elementToBeClickable(viewprofileBtn));
+	            clickElement(viewprofileBtn);
+	            System.out.println("Clicked on View profile button");
 
-	       
-	    // Wait until the button stops moving before interacting
-	        waitUntilElementStopsMoving(updateResumeBtn);
-	       
-	       
-	       
-	        // Debugging: Check if the input field is correct
-            System.out.println("Tag Name: " + updateResumeBtn.getTagName());
-            System.out.println("Type Attribute: " + updateResumeBtn.getAttribute("type"));
+	            // Wait for the thank you message to disappear
+	            waitForThankYouMessageToDisappear();
 
-            // Ensure it's an actual file input field
-            if (!"file".equals(updateResumeBtn.getAttribute("type"))) {
-                throw new IllegalStateException("The located element is not an <input type='file'>. Check your XPath.");
-            }
+	         // Wait for resume upload input field
+	            WebElement updateResumeBtn = wait.until(ExpectedConditions.visibilityOf(updateResumeInput));
 
-            // File path correction
-            String resumePath = new File("src/test/resources/resume/MAHIMA-TEST Engineer.pdf").getAbsolutePath();
-            System.out.println("Resume Path: " + resumePath);
-            
+	            // Ensure element is stable before interacting
+	            waitUntilElementStopsMoving(updateResumeBtn);
 
-            // If file input is hidden, make it visible using JavaScript
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].style.display='block';", updateResumeBtn);
+	            // Debugging: Check if the input field is correct
+	            System.out.println("Tag Name: " + updateResumeBtn.getTagName());
+	            System.out.println("Type Attribute: " + updateResumeBtn.getAttribute("type"));
 
-            // Upload Resume using sendKeys
-            enterText(updateResumeBtn,resumePath);
-            
-           System.out.println( "Resume updated successfully!");
+	            // Ensure it's an actual file input field
+	            if (!"file".equals(updateResumeBtn.getAttribute("type"))) {
+	                throw new IllegalStateException("The located element is not an <input type='file'>. Check your XPath.");
+	            }
 
-            // Wait and capture success message
-            Thread.sleep(2000);
-            String successMessageText = getSuccessMessage("//span[@id='attachCVMsgBox']");
-            if (!successMessageText.isEmpty()) {
-                System.out.println("Success Message: " + successMessageText);
-                
-            } else {
-                System.out.println("Success message not found.");
-               
-            }
+	            // File path correction
+	            String resumePath = new File("src/test/resources/resume/MAHIMA-TEST Engineer.pdf").getAbsolutePath();
+	            System.out.println("Resume Path: " + resumePath);
 
-        } catch (Exception e) {
-            System.out.println("Unable to update resume" +e);
-            
-        }
-    }
+	            // Scroll to the file input field to avoid hidden element issues
+	            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", updateResumeBtn);
+	            Thread.sleep(1000); // Allow time for scrolling effect
 
-	private String getSuccessMessage(String xpath) {
-	    try {
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3)); 
-	        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+	            // If file input is hidden, make it visible using JavaScript
+	            ((JavascriptExecutor) driver).executeScript("arguments[0].style.display='block';", updateResumeBtn);
 
-	        // Use JavaScript to capture the message BEFORE it disappears
-	        JavascriptExecutor js = (JavascriptExecutor) driver;
-	        String message = (String) js.executeScript(
-	            "var target = arguments[0];" +
-	            "var observer = new MutationObserver(function(mutations, observer) {" +
-	            "   observer.disconnect();" +  // Stop observing after getting the text
-	            "});" +
-	            "observer.observe(target, { childList: true, subtree: true });" +
-	            "return target.innerText;", element);
-	        
-	       System.out.println("Success message: Resume updated successfully !!!");
-           
+	            // Upload Resume using sendKeys
+	            enterText(updateResumeBtn, resumePath);
 
-	        return message.trim(); 
+	            System.out.println("Resume updated successfully!");
 
-	    } catch (TimeoutException e) {
-	        System.out.println("Success message disappeared before capture.");
-	        
-	        return ""; 
+	            // Wait and capture success message
+	            Thread.sleep(2000);
+	            String successMessageText = getSuccessMessage("//span[@id='attachCVMsgBox']");
+	            if (!successMessageText.isEmpty()) {
+	                System.out.println("Success Message: " + successMessageText);
+	            } else {
+	                System.out.println("Success message not found.");
+	            }
+
+	        } catch (Exception e) {
+	            System.out.println("Unable to update resume: " + e);
+	        }
 	    }
-	    
-	    
-	   
-	    
-}
-	// Waits until an element stops moving by checking its position repeatedly.
-    
-	   public void waitUntilElementStopsMoving(WebElement element) throws InterruptedException {
-	       Point lastLocation = null;
-	       int stableCount = 0;
 
-	       for (int i = 0; i < 10; i++) { // Try for up to 5 seconds
-	           Point currentLocation = element.getLocation();
+	    // Wait for the 'Thank You' message to disappear before proceeding
+	    private void waitForThankYouMessageToDisappear() {
+	        try {
+	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Thank you for sharing your information')]")));
+	            System.out.println("Thank You message disappeared.");
+	        } catch (TimeoutException e) {
+	            System.out.println("Thank You message did not disappear in time, proceeding anyway.");
+	        }
+	    }
 
-	           if (currentLocation.equals(lastLocation)) {
-	               stableCount++;
-	           } else {
-	               stableCount = 0; // Reset if it moved again
-	           }
+	    // Wait until an element stops moving before interacting
+	    public void waitUntilElementStopsMoving(WebElement element) throws InterruptedException {
+	        Point lastLocation = null;
+	        int stableCount = 0;
 
-	           if (stableCount >= 3) {
-	               System.out.println("Element is now stable.");
-	               return;
-	           }
+	        for (int i = 0; i < 10; i++) { // Try for up to 10 seconds
+	            Point currentLocation = element.getLocation();
 
-	           lastLocation = currentLocation;
-	           Thread.sleep(1000); // Wait 500ms before checking again
-	       }
+	            if (currentLocation.equals(lastLocation)) {
+	                stableCount++;
+	            } else {
+	                stableCount = 0; // Reset if it moved again
+	            }
 
-	       System.out.println("Warning: Element might still be moving.");
-	   }
-	    
-	    
+	            if (stableCount >= 3) {
+	                System.out.println("Element is now stable.");
+	                return;
+	            }
 
-}
+	            lastLocation = currentLocation;
+	            Thread.sleep(500); // Check position every 500ms
+	        }
 
-	
-	
+	        System.out.println("Warning: Element might still be moving.");
+	    }
+
+	    // Capture success message safely using JavaScript
+	    private String getSuccessMessage(String xpath) {
+	        try {
+	            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+
+	            // Use JavaScript to capture the message BEFORE it disappears
+	            JavascriptExecutor js = (JavascriptExecutor) driver;
+	            String message = (String) js.executeScript(
+	                "var target = arguments[0];" +
+	                "return target.innerText;", element);
+
+	            System.out.println("Success message: Resume updated successfully !!!");
+	            return message.trim();
+
+	        } catch (TimeoutException e) {
+	            System.out.println("Success message disappeared before capture.");
+	            return "";
+	        }
+	    }
+	}	

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	 <test name="Login Test">
+        <classes>
+            <class name="testCases.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Job Search Test">
+        <classes>
+            <class name="testCases.JobSearchTest"/>
+        </classes>
+    </test>
+    
+     <test name="Job Apply Test">
+        <classes>
+            <class name="testCases.JobApplyTest"/>
+        </classes>
+    </test>
+    
+    <test name="Profile Elements navigation Test">
+        <classes>
+            <class name="testCases.ProfileTest"/>
+        </classes>
+    </test>
+    <test name="Update Resume Test">
+        <classes>
+            <class name="testCases.ResumeUploadTest"/>
+        </classes>
+    </test>
+    
+    <test name="LogOut Test">
+        <classes>
+            <class name="testCases.LogOutTest">
+                <methods>
+                    <include name="logoutLOGINtest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite> <!--
+Suite -->

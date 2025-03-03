@@ -8,7 +8,7 @@ import utilities.ConfigReader;
 import utilities.WebDriverManager;
 
 public class BaseTest {
-	 protected WebDriver driver;
+	 public WebDriver driver;
 	 @BeforeTest
 	    public void setup() {
 	        driver = WebDriverManager.getDriver(); // Get WebDriver instance from WebDriverManager

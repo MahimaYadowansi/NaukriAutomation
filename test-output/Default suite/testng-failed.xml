@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testCases.ResumeUploadTest">
+      <class name="regressionTests.E2EjobSeachTest">
         <methods>
-          <include name="testResumeUpload"/>
+          <include name="jobSearchE2E"/>
           <include name="setup"/>
           <include name="tearDown"/>
         </methods>
-      </class> <!-- testCases.ResumeUploadTest -->
+      </class> <!-- regressionTests.E2EjobSeachTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

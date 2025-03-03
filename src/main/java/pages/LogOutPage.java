@@ -30,6 +30,7 @@ public void LogOut()
 	clickElement(drawerBarLinePage);
 	wait.until(ExpectedConditions.visibilityOf(logOut));
 	clickElement(logOut);
+	System.out.println("Successfull LogOut!!!");
 	
 }
 }

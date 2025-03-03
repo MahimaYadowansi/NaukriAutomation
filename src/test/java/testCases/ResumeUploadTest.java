@@ -17,8 +17,9 @@ public class ResumeUploadTest extends BaseTest{
 		LoginTest loginTest = new LoginTest(); // Creating object of LoginTest
 		loginTest.driver = this.driver; // Assign the same driver instance
 		loginTest.login();
-		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(5))	;
+		
 		resumeUpload= new ResumeUploadPage(driver);
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(5))	;
 		resumeUpload.updateNaukriResume();
 	}
 
