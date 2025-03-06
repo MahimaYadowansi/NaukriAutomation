@@ -59,7 +59,7 @@ public class ResumeUploadPage extends BasePage{
 	            }
 
 	            // File path correction
-	            String resumePath = new File("src/test/resources/resume/MAHIMA-TEST Engineer.pdf").getAbsolutePath();
+	            String resumePath = new File("src/test/resources/resume/SoftwareTestEngineer(MAHIMA).pdf").getAbsolutePath();
 	            System.out.println("Resume Path: " + resumePath);
 
 	            // Scroll to the file input field to avoid hidden element issues
